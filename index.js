@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const _ = require('lodash');
@@ -6,6 +7,7 @@ const lib = require('./lib');
 const api = require('./api');
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -25,7 +27,7 @@ lib.sdb.init(oauth2, tables)
     _.each(api, (apis, directory) => {
       _.each(apis, (func, name) => {
         let url = _.join(['', directory, name], '/');
-        console.log(url);
+
         app.get(url, function(request, response) {
           response.json(func());
         });
