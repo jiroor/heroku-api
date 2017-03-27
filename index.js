@@ -28,7 +28,7 @@ lib.sdb.init(oauth2, tables)
       _.each(apis, (func, name) => {
         let url = _.join(['', directory, name], '/');
 
-        app.get(url, function(request, response) {
+        app.post(url, function(request, response) {
           response.json(func());
         });
       });
