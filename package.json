@@ -1,8 +1,25 @@
 {
   "name": "heroku-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "v6.9.5"
+  },
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "repository": "https://github.com/jiroor/heroku-api",
   "author": "jiroor <yasuda_yoshiki@qualiarts.jp>",
-  "license": "MIT"
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "edit-google-spreadsheet": "^0.2.21",
+    "express": "^4.15.2",
+    "lodash": "^4.17.4"
+  }
 }
