@@ -1,14 +1,35 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const _ = require('lodash');
+const lib = require('./lib');
+const api = require('./api');
 
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/test', function(request, response) {
-  response.json({message: 'success'});
-});
+let oauth2 = {
+  clientId: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  refreshToken: process.env.GOOGLE_REFRESH_TOKEN
+};
+let tables = _.chain(process.env.TABLES)
+  .split(',')
+  .chunk(2)
+  .map(_.partial(_.zipObject, ['name', 'spreadsheetId']))
+  .value();
+
+lib.sdb.init(oauth2, tables)
+  .then(() => {
+    _.each(lib, (apis, directory) => {
+      _.each(apis, (func, name) => {
+        app.get(_.join(['', directory, name], '/'), function(request, response) {
+          response.json(func());
+        });
+      });
+    });
+  });
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
