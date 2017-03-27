@@ -1,0 +1,8 @@
+{
+  "name": "heroku-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jiroor/heroku-api",
+  "author": "jiroor <yasuda_yoshiki@qualiarts.jp>",
+  "license": "MIT"
+}
