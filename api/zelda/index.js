@@ -1,5 +1,4 @@
-const path = require('path');
-const lib = require(path.resolve(__dirname, 'lib'));
+const lib = require('../../lib');
 
 module.exports = {
   tips
