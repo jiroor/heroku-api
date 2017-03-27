@@ -22,7 +22,7 @@ let tables = _.chain(process.env.TABLES)
 
 lib.sdb.init(oauth2, tables)
   .then(() => {
-    _.each(lib, (apis, directory) => {
+    _.each(api, (apis, directory) => {
       _.each(apis, (func, name) => {
         let url = _.join(['', directory, name], '/');
         console.log(url);
