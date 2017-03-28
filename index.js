@@ -9,6 +9,8 @@ const api = require('./api');
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use('/zelda', express.static(__dirname + '/zelda/public'));
+
 app.set('port', (process.env.PORT || 5000));
 
 let oauth2 = {
