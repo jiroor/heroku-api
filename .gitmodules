@@ -1,0 +1,3 @@
+[submodule "zelda"]
+	path = zelda
+	url = git@github.com:jiroor/zelda.git
